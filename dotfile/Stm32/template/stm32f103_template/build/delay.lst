@@ -1,0 +1,217 @@
+ARM GAS  /tmp/ccH1QuLf.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"delay.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "./SYSTEM/delay.c"
+  18              		.section	.text.Delay_us,"ax",%progbits
+  19              		.align	1
+  20              		.global	Delay_us
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	Delay_us:
+  26              	.LVL0:
+  27              	.LFB29:
+   1:./SYSTEM/delay.c **** #include "stm32f10x.h"
+   2:./SYSTEM/delay.c **** 
+   3:./SYSTEM/delay.c **** void Delay_us(uint32_t xus)
+   4:./SYSTEM/delay.c **** {
+  28              		.loc 1 4 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+   5:./SYSTEM/delay.c ****   SysTick->LOAD = 72 * xus;
+  33              		.loc 1 5 3 view .LVU1
+  34              		.loc 1 5 22 is_stmt 0 view .LVU2
+  35 0000 00EBC000 		add	r0, r0, r0, lsl #3
+  36              	.LVL1:
+  37              		.loc 1 5 22 view .LVU3
+  38 0004 C000     		lsls	r0, r0, #3
+  39              		.loc 1 5 17 view .LVU4
+  40 0006 4FF0E023 		mov	r3, #-536813568
+  41 000a 5861     		str	r0, [r3, #20]
+   6:./SYSTEM/delay.c ****   SysTick->VAL = 0x00;
+  42              		.loc 1 6 3 is_stmt 1 view .LVU5
+  43              		.loc 1 6 16 is_stmt 0 view .LVU6
+  44 000c 0022     		movs	r2, #0
+  45 000e 9A61     		str	r2, [r3, #24]
+   7:./SYSTEM/delay.c ****   SysTick->CTRL = 0x00000005;
+  46              		.loc 1 7 3 is_stmt 1 view .LVU7
+  47              		.loc 1 7 17 is_stmt 0 view .LVU8
+  48 0010 0522     		movs	r2, #5
+  49 0012 1A61     		str	r2, [r3, #16]
+   8:./SYSTEM/delay.c ****   while(!(SysTick->CTRL & 0x00010000));
+  50              		.loc 1 8 3 is_stmt 1 view .LVU9
+ARM GAS  /tmp/ccH1QuLf.s 			page 2
+
+
+  51              	.L2:
+  52              		.loc 1 8 9 discriminator 1 view .LVU10
+  53              		.loc 1 8 18 is_stmt 0 discriminator 1 view .LVU11
+  54 0014 4FF0E023 		mov	r3, #-536813568
+  55 0018 1B69     		ldr	r3, [r3, #16]
+  56              		.loc 1 8 9 discriminator 1 view .LVU12
+  57 001a 13F4803F 		tst	r3, #65536
+  58 001e F9D0     		beq	.L2
+   9:./SYSTEM/delay.c ****   SysTick->CTRL = 0x00000004;
+  59              		.loc 1 9 3 is_stmt 1 view .LVU13
+  60              		.loc 1 9 17 is_stmt 0 view .LVU14
+  61 0020 4FF0E023 		mov	r3, #-536813568
+  62 0024 0422     		movs	r2, #4
+  63 0026 1A61     		str	r2, [r3, #16]
+  10:./SYSTEM/delay.c **** }
+  64              		.loc 1 10 1 view .LVU15
+  65 0028 7047     		bx	lr
+  66              		.cfi_endproc
+  67              	.LFE29:
+  69              		.section	.text.Delay_ms,"ax",%progbits
+  70              		.align	1
+  71              		.global	Delay_ms
+  72              		.syntax unified
+  73              		.thumb
+  74              		.thumb_func
+  76              	Delay_ms:
+  77              	.LVL2:
+  78              	.LFB30:
+  11:./SYSTEM/delay.c **** 
+  12:./SYSTEM/delay.c **** void Delay_ms(uint32_t xms)
+  13:./SYSTEM/delay.c **** {
+  79              		.loc 1 13 1 is_stmt 1 view -0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83              		.loc 1 13 1 is_stmt 0 view .LVU17
+  84 0000 10B5     		push	{r4, lr}
+  85              	.LCFI0:
+  86              		.cfi_def_cfa_offset 8
+  87              		.cfi_offset 4, -8
+  88              		.cfi_offset 14, -4
+  14:./SYSTEM/delay.c ****   while(xms--)
+  89              		.loc 1 14 3 is_stmt 1 view .LVU18
+  90              		.loc 1 14 8 is_stmt 0 view .LVU19
+  91 0002 04E0     		b	.L4
+  92              	.LVL3:
+  93              	.L5:
+  15:./SYSTEM/delay.c ****   {
+  16:./SYSTEM/delay.c ****     Delay_us(1000);
+  94              		.loc 1 16 5 is_stmt 1 view .LVU20
+  95 0004 4FF47A70 		mov	r0, #1000
+  96 0008 FFF7FEFF 		bl	Delay_us
+  97              	.LVL4:
+  14:./SYSTEM/delay.c ****   while(xms--)
+  98              		.loc 1 14 12 is_stmt 0 view .LVU21
+  99 000c 2046     		mov	r0, r4
+ 100              	.LVL5:
+ARM GAS  /tmp/ccH1QuLf.s 			page 3
+
+
+ 101              	.L4:
+  14:./SYSTEM/delay.c ****   while(xms--)
+ 102              		.loc 1 14 9 is_stmt 1 view .LVU22
+  14:./SYSTEM/delay.c ****   while(xms--)
+ 103              		.loc 1 14 12 is_stmt 0 view .LVU23
+ 104 000e 441E     		subs	r4, r0, #1
+ 105              	.LVL6:
+  14:./SYSTEM/delay.c ****   while(xms--)
+ 106              		.loc 1 14 9 view .LVU24
+ 107 0010 0028     		cmp	r0, #0
+ 108 0012 F7D1     		bne	.L5
+  17:./SYSTEM/delay.c ****   }
+  18:./SYSTEM/delay.c **** }
+ 109              		.loc 1 18 1 view .LVU25
+ 110 0014 10BD     		pop	{r4, pc}
+ 111              		.loc 1 18 1 view .LVU26
+ 112              		.cfi_endproc
+ 113              	.LFE30:
+ 115              		.section	.text.Delay_s,"ax",%progbits
+ 116              		.align	1
+ 117              		.global	Delay_s
+ 118              		.syntax unified
+ 119              		.thumb
+ 120              		.thumb_func
+ 122              	Delay_s:
+ 123              	.LVL7:
+ 124              	.LFB31:
+  19:./SYSTEM/delay.c **** 
+  20:./SYSTEM/delay.c **** void Delay_s(uint32_t xs)
+  21:./SYSTEM/delay.c **** {
+ 125              		.loc 1 21 1 is_stmt 1 view -0
+ 126              		.cfi_startproc
+ 127              		@ args = 0, pretend = 0, frame = 0
+ 128              		@ frame_needed = 0, uses_anonymous_args = 0
+ 129              		.loc 1 21 1 is_stmt 0 view .LVU28
+ 130 0000 10B5     		push	{r4, lr}
+ 131              	.LCFI1:
+ 132              		.cfi_def_cfa_offset 8
+ 133              		.cfi_offset 4, -8
+ 134              		.cfi_offset 14, -4
+  22:./SYSTEM/delay.c ****   while(xs--)
+ 135              		.loc 1 22 3 is_stmt 1 view .LVU29
+ 136              		.loc 1 22 8 is_stmt 0 view .LVU30
+ 137 0002 04E0     		b	.L8
+ 138              	.LVL8:
+ 139              	.L9:
+  23:./SYSTEM/delay.c ****   {
+  24:./SYSTEM/delay.c ****     Delay_ms(1000);
+ 140              		.loc 1 24 5 is_stmt 1 view .LVU31
+ 141 0004 4FF47A70 		mov	r0, #1000
+ 142 0008 FFF7FEFF 		bl	Delay_ms
+ 143              	.LVL9:
+  22:./SYSTEM/delay.c ****   while(xs--)
+ 144              		.loc 1 22 11 is_stmt 0 view .LVU32
+ 145 000c 2046     		mov	r0, r4
+ 146              	.LVL10:
+ 147              	.L8:
+ARM GAS  /tmp/ccH1QuLf.s 			page 4
+
+
+  22:./SYSTEM/delay.c ****   while(xs--)
+ 148              		.loc 1 22 9 is_stmt 1 view .LVU33
+  22:./SYSTEM/delay.c ****   while(xs--)
+ 149              		.loc 1 22 11 is_stmt 0 view .LVU34
+ 150 000e 441E     		subs	r4, r0, #1
+ 151              	.LVL11:
+  22:./SYSTEM/delay.c ****   while(xs--)
+ 152              		.loc 1 22 9 view .LVU35
+ 153 0010 0028     		cmp	r0, #0
+ 154 0012 F7D1     		bne	.L9
+  25:./SYSTEM/delay.c ****   }
+  26:./SYSTEM/delay.c **** }
+ 155              		.loc 1 26 1 view .LVU36
+ 156 0014 10BD     		pop	{r4, pc}
+ 157              		.loc 1 26 1 view .LVU37
+ 158              		.cfi_endproc
+ 159              	.LFE31:
+ 161              		.text
+ 162              	.Letext0:
+ 163              		.file 2 "CORE/core_cm3.h"
+ 164              		.file 3 "/usr/lib/gcc/arm-none-eabi/14.1.0/include/stdint-gcc.h"
+ARM GAS  /tmp/ccH1QuLf.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 delay.c
+     /tmp/ccH1QuLf.s:19     .text.Delay_us:00000000 $t
+     /tmp/ccH1QuLf.s:25     .text.Delay_us:00000000 Delay_us
+     /tmp/ccH1QuLf.s:70     .text.Delay_ms:00000000 $t
+     /tmp/ccH1QuLf.s:76     .text.Delay_ms:00000000 Delay_ms
+     /tmp/ccH1QuLf.s:116    .text.Delay_s:00000000 $t
+     /tmp/ccH1QuLf.s:122    .text.Delay_s:00000000 Delay_s
+
+NO UNDEFINED SYMBOLS
